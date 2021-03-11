@@ -38,11 +38,15 @@
     <None Include="src\Specs\App.test.tsx" />
     <None Include="src\Styles\App.css" />
     <None Include="src\Styles\index.css" />
+    <None Include="src\Model\Entity.ts" />
+    <None Include="src\Model\Being.ts" />
+    <None Include="src\Model\Kingdom.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\Components\" />
     <Folder Include="src\Views\" />
     <Folder Include="src\Styles\" />
     <Folder Include="src\Specs\" />
+    <Folder Include="src\Model\" />
   </ItemGroup>
 </Project>
