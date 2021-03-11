@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ItemType>GenericProject</ItemType>
+    <ProjectGuid>{1FA15B90-CECC-4500-B5C4-AF0F956EE375}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Default|AnyCPU' ">
+    <OutputPath>.\</OutputPath>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>Build</type>
+          <command>npm start</command>
+          <externalConsole>True</externalConsole>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>.\</OutputPath>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>Build</type>
+          <command>npm run build</command>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="src\index.tsx" />
+    <None Include="src\App.tsx" />
+    <None Include="src\App.test.tsx" />
+    <None Include="src\App.css" />
+    <None Include="src\index.css" />
+    <None Include="src\setupTests.ts" />
+    <None Include="src\reportWebVitals.ts" />
+    <None Include="src\react-app-env.d.ts" />
+    <None Include="src\logo.svg" />
+  </ItemGroup>
+</Project>
