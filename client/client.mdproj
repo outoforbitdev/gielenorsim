@@ -29,13 +29,20 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="src\index.tsx" />
-    <None Include="src\App.tsx" />
-    <None Include="src\App.test.tsx" />
-    <None Include="src\App.css" />
-    <None Include="src\index.css" />
     <None Include="src\setupTests.ts" />
     <None Include="src\reportWebVitals.ts" />
     <None Include="src\react-app-env.d.ts" />
     <None Include="src\logo.svg" />
+    <None Include="src\Views\Page.tsx" />
+    <None Include="src\Views\App.tsx" />
+    <None Include="src\Specs\App.test.tsx" />
+    <None Include="src\Styles\App.css" />
+    <None Include="src\Styles\index.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\Components\" />
+    <Folder Include="src\Views\" />
+    <Folder Include="src\Styles\" />
+    <Folder Include="src\Specs\" />
   </ItemGroup>
 </Project>
