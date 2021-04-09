@@ -3,8 +3,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Model
 {
+    public enum Race
+    {
+        Human,
+        Elf,
+    }
 
-    public class Kingdom: Entity
+    public enum Gender
+    {
+        Male,
+        Female,
+        NotApplicable,
+    }
+
+    public enum BeingStatus
+    {
+        Alive,
+        Dead,
+    }
+
+    public class Being: Entity
     {
         public Race Race { get; set; }
         public Gender Gender { get; set; }

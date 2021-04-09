@@ -3,6 +3,7 @@ using System.Diagnostics;
 
 namespace Server.Model
 {
+    #region Enums
     public enum Ages
     {
         First,
@@ -35,6 +36,7 @@ namespace Server.Model
         Twiblick,
         Essianday,
     }
+    #endregion Enums
     public class Date
     {
         public int Number;
@@ -185,6 +187,38 @@ namespace Server.Model
         {
             return new Date(a.Number - b.Number);
         }
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() == typeof(Date))
+            {
+                return Equals(obj as Date);
+            }
+            return false;
+        }
+        public bool Equals(Date b)
+        {
+            if (b is null)
+            {
+                return false;
+            }
+            return Number == b.Number;
+        }
+        public static bool operator ==(Date a, Date b)
+        {
+            if (a is null)
+            {
+                return b is null;
+            }
+            return a.Equals(b);
+        }
+        public static bool operator !=(Date a, Date b)
+        {
+            return !(a == b);
+        }
+        public override int GetHashCode()
+        {
+            return Number.GetHashCode();
+        }
         public override string ToString()
         {
             return DateString();
@@ -196,7 +230,7 @@ namespace Server.Model
                 Month.ToString() + ", " +
                 Year.ToString() + " of the " +
                 Age.ToString() + " Age";
-        } 
+        }
         #endregion Overrides
 
         private static int DaysToYears(int days)
