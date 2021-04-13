@@ -22,12 +22,12 @@ namespace Server.Model
         Dead,
     }
 
-    public class Being: Entity
+    public class Kingdom: Entity
     {
         public Race Race { get; set; }
         public Gender Gender { get; set; }
         public BeingStatus Status { get; set; }
-        public string Kingdom { get; set; }
+        //public string Kingdom { get; set; }
         [NotMapped]
         public Date BirthDate;
         [NotMapped]
@@ -71,12 +71,12 @@ namespace Server.Model
             }
         }
 
-        public Being()
+        public Kingdom()
         {
             this.Race = Race.Human;
             this.Gender = Gender.NotApplicable;
             this.Status = BeingStatus.Alive;
-            this.Kingdom = "";
+            //this.Kingdom = "";
             this.BirthDate = new Date();
             this.DeathDate = null;
         }

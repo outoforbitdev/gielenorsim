@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Server.Model
 {
 
-    public class Kingdom: Entity
+    public class Being: Entity
     {
         public Race Race { get; set; }
         public Gender Gender { get; set; }
