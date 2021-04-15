@@ -42,6 +42,7 @@
     <None Include="src\Model\Being.ts" />
     <None Include="src\Model\Kingdom.ts" />
     <None Include="src\Views\Infobox.tsx" />
+    <None Include="package.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\Components\" />
