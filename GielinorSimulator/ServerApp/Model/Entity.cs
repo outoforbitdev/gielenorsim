@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Server.Model
+namespace GielinorSimulator.Model
 {
     public class Entity: IEquatable<Entity>
     {

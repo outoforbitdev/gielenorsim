@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Server.Model
+namespace GielinorSimulator.Model
 {
     #region Enums
     public enum Ages

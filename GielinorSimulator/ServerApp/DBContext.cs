@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Server.Model;
+using GielinorSimulator.Model;
 
-namespace Server
+namespace GielinorSimulator
 {
     public class DBContext: DbContext
     {

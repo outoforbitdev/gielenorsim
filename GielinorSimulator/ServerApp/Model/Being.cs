@@ -1,33 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Server.Model
+namespace GielinorSimulator.Model
 {
-    public enum Race
-    {
-        Human,
-        Elf,
-    }
 
-    public enum Gender
-    {
-        Male,
-        Female,
-        NotApplicable,
-    }
-
-    public enum BeingStatus
-    {
-        Alive,
-        Dead,
-    }
-
-    public class Kingdom: Entity
+    public class Being: Entity
     {
         public Race Race { get; set; }
         public Gender Gender { get; set; }
         public BeingStatus Status { get; set; }
-        //public string Kingdom { get; set; }
+        public string Kingdom { get; set; }
         [NotMapped]
         public Date BirthDate;
         [NotMapped]
@@ -71,12 +53,12 @@ namespace Server.Model
             }
         }
 
-        public Kingdom()
+        public Being()
         {
             this.Race = Race.Human;
             this.Gender = Gender.NotApplicable;
             this.Status = BeingStatus.Alive;
-            //this.Kingdom = "";
+            this.Kingdom = "";
             this.BirthDate = new Date();
             this.DeathDate = null;
         }

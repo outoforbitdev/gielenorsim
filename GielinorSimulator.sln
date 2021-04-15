@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.808.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{6AB0BB49-ABA2-4018-B1E8-F4D28698EF1E}"
-EndProject
 Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "client", "client\client.mdproj", "{1FA15B90-CECC-4500-B5C4-AF0F956EE375}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GielinorSimulator", "GielinorSimulator\GielinorSimulator.csproj", "{E9E299FF-8011-4864-A8CB-31447825BDB6}"
@@ -16,12 +14,6 @@ Global
 		Default|Any CPU = Default|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6AB0BB49-ABA2-4018-B1E8-F4D28698EF1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AB0BB49-ABA2-4018-B1E8-F4D28698EF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6AB0BB49-ABA2-4018-B1E8-F4D28698EF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6AB0BB49-ABA2-4018-B1E8-F4D28698EF1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6AB0BB49-ABA2-4018-B1E8-F4D28698EF1E}.Default|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AB0BB49-ABA2-4018-B1E8-F4D28698EF1E}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{1FA15B90-CECC-4500-B5C4-AF0F956EE375}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{1FA15B90-CECC-4500-B5C4-AF0F956EE375}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{1FA15B90-CECC-4500-B5C4-AF0F956EE375}.Release|Any CPU.ActiveCfg = Release|Any CPU
