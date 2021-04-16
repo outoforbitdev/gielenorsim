@@ -3,6 +3,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GielinorSimulator.Model
 {
+    public enum Race
+    {
+        Human,
+        Elf,
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female,
+        NotApplicable,
+    }
+
+    public enum BeingStatus
+    {
+        Alive,
+        Dead,
+    }
 
     public class Being: Entity
     {

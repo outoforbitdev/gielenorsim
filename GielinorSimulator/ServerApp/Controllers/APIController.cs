@@ -29,5 +29,11 @@ namespace GielinorSimulator.Controllers
             Context.SaveChanges();
             return Context.Beings.Where(b => b.Gender == Gender.NotApplicable).ToList();
         }
+        [HttpGet("Kingdom/{name}")]
+        public ActionResult<IEnumerable<Kingdom>> GetKingdom(string name)
+        {
+            List<Kingdom> kingdoms = Context.Kingdoms.Where(k => k.Name == name & k.Environment == "Foundation").ToList();
+            return kingdoms;
+        }
     }
 }
