@@ -1,6 +1,5 @@
-﻿import { Entity, NetworkedEntity } from "./Entity";
-import { stat } from "fs";
-import { NetworkedKingdom } from "./Kingdom";
+﻿import { Entity } from "./Entity";
+import { Kingdom } from "./Kingdom";
 
 export enum Race {
     Human,
@@ -22,17 +21,13 @@ export class Being extends Entity {
     Race: Race;
     Gender: Gender;
     Status: BeingStatus;
-    Kingdom: NetworkedKingdom;
+    Kingdom: Kingdom;
 
     constructor() {
         super();
         this.Race = Race.Human;
         this.Gender = Gender.NotApplicable;
         this.Status = BeingStatus.Alive;
-        this.Kingdom = new NetworkedKingdom();
+        this.Kingdom = new Kingdom();
     }
-}
-
-export class NetworkedBeing extends NetworkedEntity {
-    Table = "Beings";
 }

@@ -5,19 +5,20 @@ namespace GielinorSimulator.Model
 {
     public class Kingdom: Entity
     {
+        public string Capital { get; set; }
+        public string Religion { get; set; }
+        public string Demonym { get; set; }
+
         public Kingdom()
         {
-            this.Race = Race.Human;
-            this.Gender = Gender.NotApplicable;
-            this.Status = BeingStatus.Alive;
-            //this.Kingdom = "";
-            this.BirthDate = new Date();
-            this.DeathDate = null;
+            Capital = "";
+            Religion = "";
+            Demonym = "";
         }
 
         public override string ToString()
         {
-            return "Being String";
+            return "Kingdom String";
         }
     }
 }

@@ -1,18 +1,11 @@
 ﻿export class Entity {
     Name: string;
-    ID: string;
+    Environment: string;
 
     constructor() {
         this.Name = "";
-        this.ID = "";
+        this.Environment = "";
     }
 }
 
-export class NetworkedEntity {
-    public ID: string;
-    private static Table: string;
-
-    constructor() {
-        this.ID = "";
-    }
-}
+export default Entity;
