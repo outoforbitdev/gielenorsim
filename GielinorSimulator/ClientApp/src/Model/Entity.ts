@@ -8,4 +8,9 @@
     }
 }
 
+export enum EntityType {
+    Being = 1,
+    Kingdom = 2,
+}
+
 export default Entity;

@@ -27,10 +27,11 @@ namespace GielinorSimulator.Controllers
         }
 
         [HttpGet("Kingdom/{name}")]
-        public ActionResult<IEnumerable<Kingdom>> GetKingdom(string name)
+        public ActionResult<Kingdom> GetKingdom(string name)
         {
-            List<Kingdom> kingdoms = Context.Kingdoms.Where(k => k.Name == name && k.Environment == "Foundation").ToList();
-            return kingdoms;
+            Kingdom kingdom = Context.Kingdoms.Where(k => k.Name == name && k.Environment == "Foundation").ToList()[0];
+            kingdom.Established = new Date(Ages.Fifth, 98, 0, 0);
+            return kingdom;
         }
     }
 }
