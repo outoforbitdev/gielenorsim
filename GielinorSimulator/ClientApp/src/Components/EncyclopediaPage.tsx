@@ -1,6 +1,7 @@
 ﻿import React, { Component, Fragment } from 'react';
 import { EntityType, Entity } from '../Model/Entity';
 import Infobox from './Infobox';
+import { Kingdom } from '../Model/Kingdom';
 
 import '../Styles/EncyclopediaPage.css'
 
@@ -49,13 +50,13 @@ export class EncyclopediaPage extends Component {
 
     async populateEntity(): Promise<void> {
         const response = await fetch('API/Kingdom/Misthalin');
-        const data = await response.json();
-        if (data as Entity) {
+        const data = new Kingdom(await response.json());
+        //if (data as Entity) {
             this.setState({ expanded: true, entity: this.standardize(data) as Entity });
-        }
-        else {
-            this.setState({ expanded: true, name: JSON.stringify(this.standardize(data)) });
-        }
+        //}
+        //else {
+        //    this.setState({ expanded: true, name: JSON.stringify(this.standardize(data)) });
+        //}
     }
 
     standardize(data: any): any {

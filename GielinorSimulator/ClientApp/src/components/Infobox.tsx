@@ -1,12 +1,18 @@
 import React, { Component, Fragment } from 'react';
-import { Container } from 'reactstrap';
 import { Entity } from '../Model/Entity';
 import { Kingdom } from '../Model/Kingdom';
 import { Date } from '../Model/Date';
 
 import '../Styles/Infobox.css'
 
-export class Infobox extends Component {
+interface InfoboxProps {
+    entity?: Entity,
+}
+type State = {
+    entity: Entity,
+    editable: boolean,
+}
+export class Infobox extends Component<InfoboxProps, State> {
     entity: Entity;
     editable: boolean;
 
@@ -54,11 +60,11 @@ export class Infobox extends Component {
                 }
                 { kingdom.Established ?
                     <InfoboxHeader header="Historical Information">
-                        <InfoboxField label="Date Established" value={kingdom.Established.DateString()} editable={editable} />
-                        <InfoboxField label="Date Fragmented" value={kingdom.Fragmented} editable={editable} />
-                        <InfoboxField label="Date Reorganized" value={kingdom.Reorganized} editable={editable} />
-                        <InfoboxField label="Date Dissolved" value={kingdom.Dissolved} editable={editable} />
-                        <InfoboxField label="Date Restored" value={kingdom.Restored} editable={editable} />
+                        <InfoboxField label="Date Established" value={kingdom.Established?.DateString()} editable={editable} />
+                        <InfoboxField label="Date Fragmented" value={kingdom.Fragmented?.DateString()} editable={editable} />
+                        <InfoboxField label="Date Reorganized" value={kingdom.Reorganized?.DateString()} editable={editable} />
+                        <InfoboxField label="Date Dissolved" value={kingdom.Dissolved?.DateString()} editable={editable} />
+                        <InfoboxField label="Date Restored" value={kingdom.Restored?.DateString()} editable={editable} />
                     </InfoboxHeader>
                     : null
                 }
@@ -67,7 +73,10 @@ export class Infobox extends Component {
     }
 }
 
-class InfoboxTitle extends Component {
+interface InfoboxTitleProps {
+    title: string,
+}
+class InfoboxTitle extends Component<InfoboxTitleProps> {
     title: string;
     constructor(props: { title: string }) {
         super(props)
@@ -81,7 +90,10 @@ class InfoboxTitle extends Component {
     }
 }
 
-class InfoboxHeader extends Component {
+interface InfoboxHeaderProps {
+    header: string,
+}
+class InfoboxHeader extends Component<InfoboxHeaderProps> {
     header: string;
     constructor(props: { header: string }) {
         super(props)
@@ -105,14 +117,18 @@ class InfoboxHeader extends Component {
 
 interface InfoboxFieldProps {
     label: string,
-    value: string,
+    value: string | undefined,
+    editable?: boolean,
+}
+interface InfoboxFieldState {
+    label: string,
+    value: string | undefined,
     editable: boolean,
 }
-
-class InfoboxField extends Component {
+class InfoboxField extends Component<InfoboxFieldProps, InfoboxFieldState> {
     constructor(props: InfoboxFieldProps) {
         super(props);
-        this.state = { label: props.label, value: props.value, editable: props.editable };
+        this.state = { label: props.label, value: props.value, editable: props.editable ?? false };
     }
 
     render() {

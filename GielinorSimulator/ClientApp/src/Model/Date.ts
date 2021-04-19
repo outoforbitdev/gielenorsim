@@ -9,7 +9,7 @@
         return "Date String";
     }
 
-    public DateString(): string {
+    public DateString() {
         return "Date String";
     }
 }
