@@ -50,9 +50,9 @@ export class EncyclopediaPage extends Component {
 
     async populateEntity(): Promise<void> {
         const response = await fetch('API/Kingdom/Misthalin');
-        const data = new Kingdom(await response.json());
+        const data = new Kingdom(this.standardize(await response.json()));
         //if (data as Entity) {
-            this.setState({ expanded: true, entity: this.standardize(data) as Entity });
+            this.setState({ expanded: true, entity: data as Entity });
         //}
         //else {
         //    this.setState({ expanded: true, name: JSON.stringify(this.standardize(data)) });

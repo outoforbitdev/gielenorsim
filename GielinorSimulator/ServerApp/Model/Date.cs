@@ -52,6 +52,7 @@ namespace GielinorSimulator.Model
             4000 * YearLength,
             2000 * YearLength,
             169 * YearLength,
+            4000 * YearLength,
         };
 
         private static int[] AgeBegin =

@@ -19,8 +19,6 @@ interface KingdomInterface {
 }
 
 export class Kingdom extends Entity {
-    Environment: string;
-    Name: string;
     Government: string;
     Monarch: string;
     Usurper: string;
@@ -47,11 +45,11 @@ export class Kingdom extends Entity {
         this.Capital = initData?.Capital || "";
         this.Religion = initData?.Religion || "";
         this.Demonym = initData?.Demonym || "";
-        this.Established = initData?.Established || undefined;
-        this.Fragmented = initData?.Fragmented || undefined;
-        this.Reorganized = initData?.Reorganized || undefined;
-        this.Dissolved = initData?.Dissolved || undefined;
-        this.Restored = initData?.Restored || undefined;
+        this.Established = initData?.Established ? new Date(initData.Established) : undefined;
+        this.Fragmented = initData?.Fragmented ? new Date(initData.Fragmented) : undefined;
+        this.Reorganized = initData?.Reorganized ? new Date(initData.Reorganized) : undefined;
+        this.Dissolved = initData?.Dissolved ? new Date(initData.Dissolved) : undefined;
+        this.Restored = initData?.Restored ? new Date(initData.Restored) : undefined;
     }
 }
 
