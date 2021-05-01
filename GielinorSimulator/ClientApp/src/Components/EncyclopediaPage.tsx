@@ -2,6 +2,7 @@
 import { EntityType, Entity } from '../Model/Entity';
 import Infobox from './Infobox';
 import { Kingdom } from '../Model/Kingdom';
+import * as Functions from '../Model/Functions';
 
 import '../Styles/EncyclopediaPage.css'
 
@@ -49,23 +50,15 @@ export class EncyclopediaPage extends Component {
     }
 
     async populateEntity(): Promise<void> {
-        const response = await fetch('API/Kingdom/Misthalin');
-        const data = new Kingdom(this.standardize(await response.json()));
+        const response = await (await fetch('API/Kingdom/Misthalin')).json();
+        console.log(await response);
+        const data = new Kingdom(Functions.standardize(response));
         //if (data as Entity) {
             this.setState({ expanded: true, entity: data as Entity });
         //}
         //else {
         //    this.setState({ expanded: true, name: JSON.stringify(this.standardize(data)) });
         //}
-    }
-
-    standardize(data: any): any {
-        let newData: any = {};
-        Object.keys(data).forEach(k => {
-            const newKey = k[0].toUpperCase() + k.substr(1,k.length - 1);
-            newData[newKey] = data[k];
-        });
-        return newData;
     }
 }
 

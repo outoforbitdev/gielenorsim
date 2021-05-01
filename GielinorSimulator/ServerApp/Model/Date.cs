@@ -39,11 +39,9 @@ namespace GielinorSimulator.Model
     #endregion Enums
     public class Date
     {
-        public int Number;
+        public int Number { get; }
 
-        private static int DayLength = 60 * 60 * 24;
-
-        private static int YearLength = DayLength * 365;
+        private static int YearLength = 365;
 
         private static int[] AgeLength =
         {
@@ -70,7 +68,10 @@ namespace GielinorSimulator.Model
             {
                 foreach (Ages age in Enum.GetValues<Ages>())
                 {
-                    if (Number < AgeBegin[(int)age])
+                    if (age == Ages.Sixth) {
+                        break;
+                    }
+                    if (Number < AgeBegin[(int)age + 1])
                     {
                         return age;
                     }
@@ -83,7 +84,8 @@ namespace GielinorSimulator.Model
         {
             get
             {
-                return (Number - AgeBegin[(int)Age] + 1) / YearLength;
+                int timeInAge = Number - AgeBegin[(int)Age] + 1;
+                return timeInAge / YearLength;
             }
         }
 
@@ -92,7 +94,7 @@ namespace GielinorSimulator.Model
         {
             get
             {
-                int daysInYear = NumberToDays(Number % YearLength);
+                int daysInYear = Number % YearLength;
                 foreach (Months month in Enum.GetValues<Months>())
                 {
                     if (daysInYear < MonthArray[(int)month])
@@ -118,7 +120,7 @@ namespace GielinorSimulator.Model
         {
             get
             {
-                int daysInYear = NumberToDays(Number % YearLength);
+                int daysInYear = Number % YearLength;
                 return daysInYear - MonthDays(Month);
             }
         }
@@ -127,7 +129,7 @@ namespace GielinorSimulator.Model
         {
             get
             {
-                int daysInWeek = NumberToDays(Number) % Enum.GetValues<Days>().Length;
+                int daysInWeek = Number % Enum.GetValues<Days>().Length;
                 foreach (Days day in Enum.GetValues<Days>())
                 {
                     if (daysInWeek < (int)day + 1)
@@ -156,7 +158,7 @@ namespace GielinorSimulator.Model
         }
         public Date(Ages age, int year, Months month, int day, int hour, int minute, int second)
         {
-            Number = AgeBegin[(int)age] + (year - 1 + DaysToYears(MonthDays(month) + day) * DayLength) * YearLength;
+            Number = AgeBegin[(int)age] + (year - 1 + DaysToYears(MonthDays(month) + day)) * YearLength;
             Number += second + (minute * 60) + (hour * 60 * 24);
         }
         public Date(int age, int year, int month, int day, int hour, int minute, int second): this((Ages)age, year, (Months)month, day, hour, minute, second)
@@ -236,11 +238,7 @@ namespace GielinorSimulator.Model
 
         private static int DaysToYears(int days)
         {
-            return days / NumberToDays(YearLength) + 1;
-        }
-        private static int NumberToDays(int number)
-        {
-            return number / DayLength;
+            return days / YearLength + 1;
         }
     }
 }

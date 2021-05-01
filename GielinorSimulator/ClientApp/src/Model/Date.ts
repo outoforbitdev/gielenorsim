@@ -37,9 +37,7 @@ enum Days {
 export class Date {
     public Number: number;
 
-    private static DayLength = 60 * 60 * 24;
-
-    private static YearLength = Date.DayLength * 365;
+    private static YearLength = 365;
 
     private static AgeLength =
         [
@@ -87,7 +85,7 @@ export class Date {
     private static MonthArray = [ 40, 78, 110, 144, 182, 213, 251, 291, 330, 366 ];
     public get Month(): Months
     {
-        const daysInYear = Date.NumberToDays(this.Number % Date.YearLength);
+        const daysInYear = this.Number % Date.YearLength;
         let month: Months;
         for (month = 0; month < 10; month++) {
             if (daysInYear < Date.MonthArray[month]) {
@@ -130,13 +128,13 @@ export class Date {
 
     public get Day(): number
     {
-        const daysInYear = Date.NumberToDays(this.Number % Date.YearLength);
+        const daysInYear = this.Number % Date.YearLength;
         return daysInYear - Date.MonthDays(this.Month);
     }
 
     public get DayOfWeek(): Days
     {
-        const dayInWeek = Date.NumberToDays(this.Number) % 7;
+        const dayInWeek = this.Number % 7;
         switch (dayInWeek) {
             case 0:
                 return Days.Ivanday;
@@ -173,9 +171,5 @@ export class Date {
     public YearString() {
         return "Year " +
             this.Year + " of the " + Ages[this.Age] + " Age";
-    }
-
-    private static NumberToDays(number: number): number {
-        return number / Date.DayLength;
     }
 }

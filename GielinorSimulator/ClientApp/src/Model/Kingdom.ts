@@ -1,5 +1,6 @@
 ﻿import { Entity } from "./Entity";
 import { Date } from "./Date";
+import * as Functions from "./Functions";
 
 interface KingdomInterface {
     Environment: string,
@@ -45,7 +46,7 @@ export class Kingdom extends Entity {
         this.Capital = initData?.Capital || "";
         this.Religion = initData?.Religion || "";
         this.Demonym = initData?.Demonym || "";
-        this.Established = initData?.Established ? new Date(initData.Established) : undefined;
+        this.Established = initData?.Established ? new Date(Functions.standardize(initData.Established)) : undefined;
         this.Fragmented = initData?.Fragmented ? new Date(initData.Fragmented) : undefined;
         this.Reorganized = initData?.Reorganized ? new Date(initData.Reorganized) : undefined;
         this.Dissolved = initData?.Dissolved ? new Date(initData.Dissolved) : undefined;
