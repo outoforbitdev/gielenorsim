@@ -6,3 +6,7 @@
     });
     return newData;
 }
+
+export function setThis(this: any, f: Function) {
+    return f.bind(this);
+}

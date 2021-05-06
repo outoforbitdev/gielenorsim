@@ -79,7 +79,7 @@ export class Date {
 
     public get Year(): number
     {
-        return (this.Number - Date.AgeBegin[this.Age]+ 1) / Date.YearLength;
+        return Math.floor((this.Number - Date.AgeBegin[this.Age]+ 1) / Date.YearLength);
     }
 
     private static MonthArray = [ 40, 78, 110, 144, 182, 213, 251, 291, 330, 366 ];
