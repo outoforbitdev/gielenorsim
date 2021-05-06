@@ -1,24 +1,19 @@
-﻿import React, { Component, Fragment } from 'react';
-import { EntityType, Entity } from '../Model/Entity';
+﻿import React, { Component } from 'react';
+import { Entity } from '../Model/Entity';
 import Infobox from './Infobox';
 import ArticleContent from './ArticleContent';
 import { IContent } from './Interfaces';
-import { Kingdom } from '../Model/Kingdom';
-import * as Functions from '../Model/Functions';
 
-import '../Styles/EncyclopediaPage.css'
+import '../Styles/EncyclopediaPage.css';
 
 interface EncyclopediaPageProps {
-    entityType: EntityType;
-    name: string;
+    entity: Entity;
     expanded: boolean;
 }
 
 interface EncyclopediaPageState {
-    entityType: EntityType;
-    name: string;
     expanded: boolean;
-    entity?: Entity;
+    entity: Entity;
     description?: string;
 }
 
@@ -27,14 +22,9 @@ export class EncyclopediaPage extends Component<EncyclopediaPageProps, Encyclope
     constructor(props: EncyclopediaPageProps) {
         super(props);
         this.state = {
-            entityType: props.entityType,
-            name: props.name,
+            entity: props.entity,
             expanded: props.expanded ? props.expanded : false,
         }
-    }
-
-    componentDidMount() {
-        this.populateEntity();
     }
 
     render() {
@@ -66,23 +56,11 @@ export class EncyclopediaPage extends Component<EncyclopediaPageProps, Encyclope
 
             return (
                 <div>
-                    <h1>{this.state.entity?.Name}</h1>
+                    <h1>{this.state.entity.Name}</h1>
                     <Infobox entity={this.state.entity} />
                     <ArticleContent content={JSON.stringify(description)} editable={true} />
                 </div>
             );
-        }
-    }
-
-    async populateEntity(): Promise<void> {
-        const response = await (await fetch('API/Kingdom/Misthalin')).json();
-        console.log(await response);
-        const data = new Kingdom(Functions.standardize(response));
-        if (data as Entity) {
-            this.setState({ expanded: true, entity: data as Entity });
-        }
-        else {
-            this.setState({ expanded: true, name: JSON.stringify(Functions.standardize(response)) });
         }
     }
 }

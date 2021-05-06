@@ -120,7 +120,7 @@ export class Date {
     private static MonthDays(month: Months): number
     {
         let monthDays = 0;
-        if (month != Months.Rintra) {
+        if (month !== Months.Rintra) {
             monthDays = Date.MonthArray[month - 1];
         }
         return monthDays;

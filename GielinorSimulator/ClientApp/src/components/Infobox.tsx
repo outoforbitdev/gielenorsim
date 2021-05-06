@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Entity } from '../Model/Entity';
 import { Kingdom } from '../Model/Kingdom';
-import { Date } from '../Model/Date';
 
 import '../Styles/Infobox.css'
 

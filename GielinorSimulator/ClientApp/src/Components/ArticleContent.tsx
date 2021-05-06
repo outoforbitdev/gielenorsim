@@ -1,20 +1,12 @@
 ﻿import React, { Component, Fragment } from 'react';
-import { EntityType, Entity } from '../Model/Entity';
-import Infobox from './Infobox';
-import { Kingdom } from '../Model/Kingdom';
-import * as Functions from '../Model/Functions';
-import { IContent, ISection, IStringValue, ArticleContentProps } from './Interfaces';
+import { IContent, ISection, ArticleContentProps } from './Interfaces';
 import ParagraphSection from './ParagraphSection';
 import HeaderSection from './HeaderSection';
 
-import '../Styles/EncyclopediaPage.css'
+import '../Styles/EncyclopediaPage.css';
 
 const TitleSplitter = String.fromCharCode(1);
-const SummarySplitter = String.fromCharCode(2);
-const SectionSplitter = String.fromCharCode(28);
 const SubSectionSplitter = String.fromCharCode(29);
-const SubSubSectionSplitter = String.fromCharCode(30);
-const SubSubSubSectionSplitter = String.fromCharCode(31);
 
 export class ArticleContent extends Component<ArticleContentProps, { content: IContent }> {
 

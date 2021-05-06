@@ -1,6 +1,5 @@
-﻿import React, { Component, Fragment } from 'react';
+﻿import React, { Component } from 'react';
 import { IStringValue } from './Interfaces';
-import { curry } from './Core';
 
 //import '../Styles/ParagraphSection.css';
 
