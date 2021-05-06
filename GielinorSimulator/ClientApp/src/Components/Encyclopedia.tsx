@@ -6,6 +6,7 @@ import EncyclopediaPage from './EncyclopediaPage';
 import SearchBar from './SearchBar';
 
 import '../Styles/Encyclopedia.css';
+import AddPage from './AddPage';
 
 interface EncyclopediaProps {
 
@@ -39,6 +40,7 @@ export class Encyclopedia extends Component<EncyclopediaProps, EncyclopediaState
                     <input type="button" value="Forward" disabled={this.state.future.length < 1} />
                     <br />
                     <SearchBar updateSearch={this.__updateSearch} />
+                    <AddPage updateCurrent={this.__goTo.bind(this)} />
                     <EncyclopediaPage entity={this.state.current} expanded={this.state.expanded} />
                 </div>
             );

@@ -25,6 +25,7 @@
     <None Remove="ClientApp\src\Components\EncyclopediaPage.tsx" />
     <None Remove="ClientApp\src\Components\EncyclopediaPage %28copy%29.tsx" />
     <None Remove="ClientApp\src\Styles\EncyclopediaPage.css" />
+    <None Remove="ClientApp\src\Components\SearchBar %28copy%29.tsx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,7 @@
     <TypeScriptCompile Include="ClientApp\src\Components\ArticleContent.tsx" />
     <TypeScriptCompile Include="ClientApp\src\Components\Encyclopedia.tsx" />
     <TypeScriptCompile Include="ClientApp\src\Components\SearchBar.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\Components\AddPage.tsx" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
