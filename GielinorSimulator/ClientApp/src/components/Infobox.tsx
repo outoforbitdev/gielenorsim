@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { Entity } from '../Model/Entity';
 import { Kingdom } from '../Model/Kingdom';
-import { Date } from '../Model/Date';
 
 import '../Styles/Infobox.css'
 
 interface InfoboxProps {
     entity?: Entity,
+    editable?: boolean,
 }
 type State = {
     entity: Entity,
@@ -16,10 +16,10 @@ export class Infobox extends Component<InfoboxProps, State> {
     entity: Entity;
     editable: boolean;
 
-    constructor(props: any) {
+    constructor(props: InfoboxProps) {
         super(props);
-        this.entity = props.entity;
-        this.editable = props.editable;
+        this.entity = props.entity ?? new Entity();
+        this.editable = props.editable ?? false;
     }
 
     render() {

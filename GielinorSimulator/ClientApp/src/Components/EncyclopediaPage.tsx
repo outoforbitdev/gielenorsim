@@ -1,28 +1,30 @@
-﻿import React, { Component, Fragment } from 'react';
-import { EntityType, Entity } from '../Model/Entity';
+﻿import React, { Component } from 'react';
+import { Entity } from '../Model/Entity';
 import Infobox from './Infobox';
-import { Kingdom } from '../Model/Kingdom';
+import ArticleContent from './ArticleContent';
+import { IContent } from './Interfaces';
 
-import '../Styles/EncyclopediaPage.css'
+import '../Styles/EncyclopediaPage.css';
 
 interface EncyclopediaPageProps {
-    entityType: EntityType;
-    name: string;
-    expanded: boolean;
     entity: Entity;
-    description: string;
+    expanded: boolean;
 }
 
-export class EncyclopediaPage extends Component {
-    state: EncyclopediaPageProps;
+interface EncyclopediaPageState {
+    expanded: boolean;
+    entity: Entity;
+    description?: string;
+}
+
+export class EncyclopediaPage extends Component<EncyclopediaPageProps, EncyclopediaPageState> {
 
     constructor(props: EncyclopediaPageProps) {
         super(props);
-        this.state = props;
-    }
-
-    componentDidMount() {
-        this.populateEntity();
+        this.state = {
+            entity: props.entity,
+            expanded: props.expanded ? props.expanded : false,
+        }
     }
 
     render() {
@@ -34,38 +36,32 @@ export class EncyclopediaPage extends Component {
             );
         }
         else {
-            let description = "description is here ";
-            for (let i = 0; i < 10; i++) {
-                description = description + description;
-            }
+            let description: IContent = {
+                summary: { value: "summary" },
+                sections: [
+                    {
+                        title: { value: "section 1 title" },
+                        summary: { value: "section 1 summary" },
+                    },
+                    {
+                        title: { value: "section 2 title" },
+                        summary: { value: "section 2 summary" },
+                        subsections: [{
+                            title: { value: "section 2.1 title" },
+                            summary: { value: "section 2.1 summary" },
+                        }]
+                    }
+                ],
+            };
+
             return (
                 <div>
                     <h1>{this.state.entity.Name}</h1>
                     <Infobox entity={this.state.entity} />
-                    <div>{description}</div>
+                    <ArticleContent content={JSON.stringify(description)} editable={true} />
                 </div>
             );
         }
-    }
-
-    async populateEntity(): Promise<void> {
-        const response = await fetch('API/Kingdom/Misthalin');
-        const data = new Kingdom(this.standardize(await response.json()));
-        //if (data as Entity) {
-            this.setState({ expanded: true, entity: data as Entity });
-        //}
-        //else {
-        //    this.setState({ expanded: true, name: JSON.stringify(this.standardize(data)) });
-        //}
-    }
-
-    standardize(data: any): any {
-        let newData: any = {};
-        Object.keys(data).forEach(k => {
-            const newKey = k[0].toUpperCase() + k.substr(1,k.length - 1);
-            newData[newKey] = data[k];
-        });
-        return newData;
     }
 }
 

@@ -3,6 +3,7 @@ table {
     float: right;
     margin: 5px;
     border-collapse: collapse;
+    max-width: 300px;
 }
 
 th {
