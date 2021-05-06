@@ -1,12 +1,14 @@
-﻿import React, { Component } from 'react';
+﻿import React, { ChangeEventHandler, Component } from 'react';
 import { EntityType, Entity } from '../Model/Entity';
 import { Kingdom } from '../Model/Kingdom';
 import * as Functions from '../Model/Functions';
 import EncyclopediaPage from './EncyclopediaPage';
+import SearchBar from './SearchBar';
 
-import '../Styles/EncyclopediaPage.css';
+import '../Styles/Encyclopedia.css';
 
 interface EncyclopediaProps {
+
 }
 
 interface EncyclopediaState {
@@ -14,6 +16,7 @@ interface EncyclopediaState {
     current?: Entity,
     future: Entity[],
     expanded: boolean,
+    searchTerm: string,
 }
 
 export class Encyclopedia extends Component<EncyclopediaProps, EncyclopediaState> {
@@ -24,11 +27,24 @@ export class Encyclopedia extends Component<EncyclopediaProps, EncyclopediaState
             past: [],
             future: [],
             expanded: true,
+            searchTerm: "",
         }
     }
 
     render() {
-        return this.state.current ? <EncyclopediaPage entity={this.state.current} expanded={this.state.expanded} /> : null
+        if (this.state.current) {
+            return (
+                <div>
+                    <input type="button" value="Back" disabled={this.state.past.length < 1} />
+                    <input type="button" value="Forward" disabled={this.state.future.length < 1} />
+                    <br />
+                    <SearchBar updateSearch={this.__updateSearch} />
+                    <EncyclopediaPage entity={this.state.current} expanded={this.state.expanded} />
+                </div>
+            );
+        } else {
+            return null;
+        }
     }
 
     componentDidMount() {
@@ -80,6 +96,10 @@ export class Encyclopedia extends Component<EncyclopediaProps, EncyclopediaState
         else {
             return undefined;
         }
+    }
+
+    private __updateSearch(searchTerm: string) {
+        console.log(searchTerm);
     }
 }
 

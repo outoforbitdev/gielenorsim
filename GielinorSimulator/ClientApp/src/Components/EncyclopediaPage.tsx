@@ -4,8 +4,6 @@ import Infobox from './Infobox';
 import ArticleContent from './ArticleContent';
 import { IContent } from './Interfaces';
 
-import '../Styles/EncyclopediaPage.css';
-
 interface EncyclopediaPageProps {
     entity: Entity;
     expanded: boolean;
