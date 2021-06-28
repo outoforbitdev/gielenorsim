@@ -8,7 +8,8 @@ namespace GielinorSimulator
     {
         public DbSet<Being> Beings { get; set; }
         public DbSet<Kingdom> Kingdoms { get; set; }
-        public DbSet<KingdomDescription> KingdomDescriptions { get; set; }
+        public DbSet<Description> Descriptions { get; set; }
+        public DbSet<Index> Index { get; set; }
 
 
         public DBContext(DbContextOptions<DBContext> options) : base(options)
@@ -22,6 +23,7 @@ namespace GielinorSimulator
             modelBuilder.Entity<Kingdom>().HasKey(b => new { b.Name, b.Environment });
 
             modelBuilder.Entity<Description>().HasKey(d => new { d.Name, d.Environment });
+            modelBuilder.Entity<Index>().HasKey(i => new { i.Name, i.Environment });
         }
 
         public DBContext(): base()
@@ -30,5 +32,13 @@ namespace GielinorSimulator
         }
 
 
+    }
+
+    public class Index: Entity
+    {
+        public Index(): base()
+        {
+            Type = EntityType.Being;
+        }
     }
 }

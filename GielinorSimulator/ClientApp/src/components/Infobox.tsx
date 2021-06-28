@@ -28,19 +28,19 @@ export class Infobox extends Component<InfoboxProps, State> {
         }
         else {
             return (
-                <table>
+                <table><tbody>
                     <tr><th colSpan={2}>{this.entity?.Name}</th></tr>
                     <tr><td colSpan={2}>Heading</td></tr>
                     <tr><td>Field 1</td><td>Info</td></tr>
-                </table>
+                </tbody></table>
             );
         }
     }
 
     kingdomTable(kingdom: Kingdom, editable: boolean) {
         return (
-            <table>
-                <InfoboxTitle title={kingdom.Name} />
+            <table><tbody>
+                    <InfoboxTitle title={kingdom.Name} />
                 {undefined ?
                     <InfoboxHeader header="PoliticalInformation">
                         <InfoboxField label="Government Type" value={kingdom.Government} editable={editable} />
@@ -68,7 +68,7 @@ export class Infobox extends Component<InfoboxProps, State> {
                     </InfoboxHeader>
                     : null
                 }
-            </table>
+            </tbody></table>
         );
     }
 }

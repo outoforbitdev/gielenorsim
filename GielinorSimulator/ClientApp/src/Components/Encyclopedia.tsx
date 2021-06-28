@@ -1,5 +1,5 @@
-﻿import React, { ChangeEventHandler, Component } from 'react';
-import { EntityType, Entity } from '../Model/Entity';
+﻿import React, { Component } from 'react';
+import { Entity } from '../Model/Entity';
 import { Kingdom } from '../Model/Kingdom';
 import * as Functions from '../Model/Functions';
 import EncyclopediaPage from './EncyclopediaPage';
@@ -7,6 +7,8 @@ import SearchBar from './SearchBar';
 
 import '../Styles/Encyclopedia.css';
 import AddPage from './AddPage';
+import { get, getEntity } from './Core';
+import { EntityRequest, EntityResponse } from '../Model/Result';
 
 interface EncyclopediaProps {
 
@@ -50,7 +52,7 @@ export class Encyclopedia extends Component<EncyclopediaProps, EncyclopediaState
     }
 
     componentDidMount() {
-        this.__goTo(EntityType.Kingdom, "Misthalin");
+        this.__goTo("Misthalin");
     }
 
     private __pushCurrent(array: Entity[]) {
@@ -60,8 +62,9 @@ export class Encyclopedia extends Component<EncyclopediaProps, EncyclopediaState
         return array;
     }
 
-    private async __goTo(entityType: EntityType, name: string) {
-        const entity = await this.__getEntity(entityType, name);
+    private async __goTo(name: string) {
+        const entity = await this.__getEntity(name);
+        console.log(entity);
 
         if (entity) {
             this.setState({
@@ -88,16 +91,15 @@ export class Encyclopedia extends Component<EncyclopediaProps, EncyclopediaState
         })
     }
 
-    private async __getEntity(entityType: EntityType, name: string): Promise<Entity | undefined> {
-        const url = "API/" + EntityType[entityType] + "/" + name;
-        const response = await (await fetch(url)).json();
-        const data = new Kingdom(Functions.standardize(response));
-        if (data as Entity) {
-            return data as Entity;
-        }
-        else {
-            return undefined;
-        }
+    private async __getEntity(name: string): Promise<Entity | undefined> {
+        const url = "API/Encyclopedia/Entity";
+        const request = new EntityRequest();
+        request.Name = name;
+        request.Key = "Foundation";
+        const data = (await getEntity<EntityResponse>(url, request));
+        console.log("Entity:");
+        console.log(data.Entity);
+        return data.Success ? data.Entity : undefined;
     }
 
     private __updateSearch(searchTerm: string) {

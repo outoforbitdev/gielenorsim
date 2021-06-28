@@ -1,8 +1,11 @@
 ﻿import React, { Component } from 'react';
-import { Entity } from '../Model/Entity';
+import { Entity, EntityType } from '../Model/Entity';
 import Infobox from './Infobox';
 import ArticleContent from './ArticleContent';
 import { IContent } from './Interfaces';
+import { Being } from '../Model/Being';
+import Kingdom from '../Model/Kingdom';
+import { get } from './Core';
 
 interface EncyclopediaPageProps {
     entity: Entity;
@@ -59,6 +62,22 @@ export class EncyclopediaPage extends Component<EncyclopediaPageProps, Encyclope
                     <ArticleContent content={JSON.stringify(description)} editable={true} />
                 </div>
             );
+        }
+    }
+
+    private async __getDescription() {
+        const url = "API/Encyclopedia/Description/" + EntityType[this.__getEntityType()] + "/" + this.state.entity.Name;
+        const data = await get<IContent>(url);
+        return data.Success ? data.Value : undefined;
+    }
+
+    private __getEntityType() {
+        if (this.state.entity as Kingdom) {
+            return EntityType.Kingdom;
+        } else if (this.state.entity as Being) {
+            return EntityType.Being;
+        } else {
+            return EntityType.Kingdom;
         }
     }
 }

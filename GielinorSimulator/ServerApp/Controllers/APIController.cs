@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GielinorSimulator.Model;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,26 +29,30 @@ namespace GielinorSimulator.Controllers
             return Context.Beings.Where(b => b.Gender == Gender.NotApplicable).ToList();
         }
 
-        [HttpGet("Kingdom/{name}")]
-        public ActionResult<Kingdom> GetKingdom(string name)
+        [HttpGet("Encyclopedia/Search/{name}")]
+        public ActionResult<SearchSuggestiongResponse> Search(string name)
         {
-            Kingdom kingdom = Context.Kingdoms.Where(k => k.Name == name && k.Environment == Environment).ToList()[0];
-            kingdom.Established = new Date(Ages.First, 1, Months.Rintra, 1);
-            return kingdom;
+            IQueryable<Index> searchResults = SearchSuggestions(name);
+            List<SearchResult> listResults = searchResults.Take(5).Select((arg) => ConvertToResult(arg)).ToList();
+
+            //SearchResults results = (SearchResults)listResults;
+
+            return new SearchSuggestiongResponse(listResults);
         }
 
-        [HttpGet("Encyclopedia/Description/{type}/{name}")]
-        public ActionResult<Description> GetDescription(string type, string name)
+        private IQueryable<Index> SearchSuggestions(string name)
         {
-            switch (type)
-            {
-                case "Kingdom":
-                    return Context.KingdomDescriptions
-                        .Where(d => d.Environment == Environment && d.Name == name)
-                        .FirstOrDefault();
-                default:
-                    return new KingdomDescription();
-            }
+            return Context.Index.Where(i => i.Environment == Environment && i.Name.ToLower().Contains(name.ToLower()));
+        }
+
+        private bool MatchesSearchSuggestion(Index i, string name)
+        {
+            return i.Environment == Environment && i.Name.Contains(name.ToLower());
+        }
+
+        private static SearchResult ConvertToResult<T>(T e) where T: Entity
+        {
+            return new SearchResult() { Value = e.Name };
         }
     }
 }

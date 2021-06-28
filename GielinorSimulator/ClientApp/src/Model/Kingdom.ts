@@ -1,6 +1,7 @@
-﻿import { Entity } from "./Entity";
+﻿import { Entity, EntityType } from "./Entity";
 import { Date } from "./Date";
 import * as Functions from "./Functions";
+import { EntityRequest, Response } from "./Result";
 
 interface KingdomInterface {
     Environment: string,
@@ -17,6 +18,21 @@ interface KingdomInterface {
     Reorganized: Date | undefined,
     Dissolved: Date | undefined,
     Restored: Date | undefined,
+}
+
+export class KingdomRequest extends EntityRequest {
+    public readonly EntityType: EntityType;
+    constructor() {
+        super();
+        EntityType = EntityType.Kingdom;
+    }
+}
+
+export class KingdomResponse extends Response {
+    public Kingdom: Kingdom;
+    constructor() {
+        super();
+    }
 }
 
 export class Kingdom extends Entity {

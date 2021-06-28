@@ -5,6 +5,8 @@ namespace GielinorSimulator.Model
 {
     public class Kingdom : Entity
     {
+        [NotMapped]
+        public override EntityType Type { get { return EntityType.Being; } }
         public string Government { get; set; }
         public string Monarch { get; set; }
         public string Usurper { get; set; }

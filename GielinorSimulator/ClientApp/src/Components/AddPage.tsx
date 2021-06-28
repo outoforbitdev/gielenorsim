@@ -1,8 +1,8 @@
 ﻿import React, { Component, Fragment } from 'react';
-import Entity, { EntityType } from '../Model/Entity';
+import { EntityType } from '../Model/Entity';
 
 interface AddPageProps {
-    updateCurrent(entityType: EntityType, name: string): void,
+    updateCurrent(name: string): void,
 }
 
 interface AddPageState {

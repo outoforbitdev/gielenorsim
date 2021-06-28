@@ -17,14 +17,4 @@ namespace GielinorSimulator.Model
             return "Description String";
         }
     }
-
-    public class KingdomDescription: Description
-    {
-        public KingdomDescription() { }
-
-        public override string ToString()
-        {
-            return "Kingdom Description";
-        }
-    }
 }

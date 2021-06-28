@@ -2,10 +2,12 @@
 
 namespace GielinorSimulator.Model
 {
-    public class Entity: IEquatable<Entity>
+
+    public class Entity : IEquatable<Entity>
     {
         public string Name { get; set; }
         public string Environment { get; set; }
+        public virtual EntityType Type { get; set; }
 
         public Entity()
         {
