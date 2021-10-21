@@ -25,6 +25,10 @@
     <None Remove="ClientApp\src\Components\EncyclopediaPage.tsx" />
     <None Remove="ClientApp\src\Components\EncyclopediaPage %28copy%29.tsx" />
     <None Remove="ClientApp\src\Styles\EncyclopediaPage.css" />
+    <None Remove="ClientApp\src\core\" />
+    <None Remove="ClientApp\src\core\Components\" />
+    <None Remove="ClientApp\src\core\Framework\" />
+    <None Remove="ClientApp\src\core\Components.tsx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +37,9 @@
     <Folder Include="ServerApp\Controllers\" />
     <Folder Include="ServerApp\Model\" />
     <Folder Include="ClientApp\src\Specs\" />
+    <Folder Include="ClientApp\src\core\" />
+    <Folder Include="ClientApp\src\core\Components\" />
+    <Folder Include="ClientApp\src\core\Framework\" />
   </ItemGroup>
 
   <ItemGroup>
