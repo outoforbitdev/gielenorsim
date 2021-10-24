@@ -1,0 +1,9 @@
+﻿body {
+}
+
+div.OODCoreFrameworkActivity {
+    flex-grow: 1;
+    border-left: solid black 1px;
+    border-right: solid black 1px;
+    border-bottom: solid black 1px;
+}

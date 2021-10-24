@@ -1,86 +1,64 @@
-﻿import React, { Component } from 'react';
-import { EntityType, Entity } from '../Model/Entity';
-import { Kingdom } from '../Model/Kingdom';
-import * as Functions from '../Model/Functions';
-import EncyclopediaPage from './EncyclopediaPage';
-
-import '../Styles/EncyclopediaPage.css';
+import { Activity } from '../core/Framework';
+import { InfoBox, Article, SearchBar } from '../core/Components';
 
 interface EncyclopediaProps {
 }
 
-interface EncyclopediaState {
-    past: Entity[],
-    current?: Entity,
-    future: Entity[],
-    expanded: boolean,
+interface EncyclopediaState extends EncyclopediaProps {
+
 }
 
-export class Encyclopedia extends Component<EncyclopediaProps, EncyclopediaState> {
-
+export class Encyclopedia extends Activity<EncyclopediaProps, EncyclopediaState> {
     constructor(props: EncyclopediaProps) {
         super(props);
-        this.state = {
-            past: [],
-            future: [],
-            expanded: true,
-        }
+        this.name = "Encyclopedia";
     }
 
     render() {
-        return this.state.current ? <EncyclopediaPage entity={this.state.current} expanded={this.state.expanded} /> : null
-    }
+        const exampleSections = [
+            {
+                header: "Header One",
+                lines: [
+                    {
+                        label: "Label One",
+                        value: 1,
+                    },
+                    {
+                        label: "This is a super long label that gets really long",
+                        value: "boo",
+                    },
+                ],
+            }
+        ]
 
-    componentDidMount() {
-        this.__goTo(EntityType.Kingdom, "Misthalin");
-    }
-
-    private __pushCurrent(array: Entity[]) {
-        if (this.state.current) {
-            return array.concat([this.state.current]);
+        const article = {
+            title: "Article Title",
+            summary: "this is a summary",
+            sections: [
+                {
+                    header: "Section 1 Header",
+                    content: "content",
+                    subsections: [
+                        {
+                            header: "Section 1.1 Header",
+                            content: "more content",
+                        }
+                    ],
+                },
+            ],
         }
-        return array;
-    }
 
-    private async __goTo(entityType: EntityType, name: string) {
-        const entity = await this.__getEntity(entityType, name);
-
-        if (entity) {
-            this.setState({
-                past: this.__pushCurrent(this.state.past),
-                current: entity,
-                future: [],
-            });
-        }
-    }
-
-    private __goBack() {
-        this.setState({
-            current: this.state.past[this.state.past.length - 1],
-            past: this.state.past.slice(0, this.state.past.length - 1),
-            future: this.__pushCurrent(this.state.future),
-        });
-    }
-
-    private __goForward() {
-        this.setState({
-            current: this.state.future[this.state.future.length - 1],
-            future: this.state.future.slice(0, this.state.future.length - 1),
-            past: this.__pushCurrent(this.state.past),
-        })
-    }
-
-    private async __getEntity(entityType: EntityType, name: string): Promise<Entity | undefined> {
-        const url = "API/" + EntityType[entityType] + "/" + name;
-        const response = await (await fetch(url)).json();
-        const data = new Kingdom(Functions.standardize(response));
-        if (data as Entity) {
-            return data as Entity;
-        }
-        else {
-            return undefined;
-        }
+        return (
+            <Activity>
+                <div><SearchBar /></div>
+                <div>
+                <InfoBox title={"Example InfoBox"}
+                    editMode={true}
+                    sections={exampleSections}
+                />
+                    <Article article={article} editable={false} />
+                </div>
+            </Activity>
+        );
     }
 }
-
-export default Encyclopedia;

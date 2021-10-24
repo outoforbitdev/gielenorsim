@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Activity, LoginPage, LoadingPage, Workspace } from './core/Framework'
+import { Activity, LoginPage, LoadingPage, Workspace } from './core/Framework';
+import { Encyclopedia } from './Components/Encyclopedia';
 
 interface AppState {
     phase: AppPhase;
@@ -26,17 +27,20 @@ export default class App extends Component<{}, AppState> {
     }
 
     render() {
-        const startUpActivity = new Activity({ userKey: this.state.userKey, sessionKey: this.state.sessionKey ?? "" });
+        const startUpActivity = new Activity({ userKey: this.state.userKey, sessionKey: this.state.sessionKey ?? "", name: "Activity Name" });
+        const encyclopediaActivity = new Encyclopedia({ userKey: this.state.userKey, sessionKey: this.state.sessionKey });
+
         switch (this.state.phase) {
             case AppPhase.Login:
                 return <LoginPage onLogin={this.__onLogin.bind(this)} />;
-                break;
             case AppPhase.Load:
-                return <LoadingPage userKey={this.state.userKey} onLoad={this.__onLoad.bind(this)} />;
-                break;
+                return <LoadingPage userKey={this.state.userKey} onLoad={this.__onLoad.bind(this)} />;;
             case AppPhase.Workspace:
             default:
-                return <Workspace userKey={this.state.userKey} sessionKey={this.state.sessionKey ?? ""} startupActivities={[startUpActivity]} />;
+                return <Workspace userKey={this.state.userKey}
+                    sessionKey={this.state.sessionKey}
+                    name={"Fantasy Simulator"}
+                    startupActivities={[encyclopediaActivity, startUpActivity]} />;
         }
     }
 

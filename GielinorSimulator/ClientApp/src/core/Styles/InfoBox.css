@@ -1,0 +1,41 @@
+﻿body {
+}
+
+table.OODCoreComponentsInfoBox {
+    border: solid black 1px;
+    border-collapse: collapse;
+    width: 270px;
+    max-width: 100%;
+    margin: 10px;
+}
+
+    table.OODCoreComponentsInfoBox.desktop {
+        float: right;
+    }
+
+tr.OODCoreComponentsInfoBox {
+    border-collapse: collapse;
+    display: flex;
+}
+
+th.OODCoreComponentsInfoBox {
+    border-top: solid black 1px;
+    padding: 2px 5px 0px 5px;
+}
+
+    th.OODCoreComponentsInfoBox.header {
+        text-align: left;
+    }
+
+td.OODCoreComponentsInfoBox {
+    border-top: solid black 1px;
+    padding: 2px 5px 0px 5px;
+    width: 135px;
+}
+
+    td.OODCoreComponentsInfoBox.label {
+    }
+
+    td.OODCoreComponentsInfoBox.value {
+        flex-grow: 1;
+    }

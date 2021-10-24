@@ -1,25 +1,22 @@
-﻿import { Component } from 'react';
+import { Component } from 'react';
+import '../Styles/Activity.css';
 
-interface ActivityProps {
-    userKey: string;
-    sessionKey: string;
+interface IActivity {
+    name: string;
 }
 
-interface ActivityState {
-    userKey: string;
-    sessionKey: string;
-}
-
-export class Activity extends Component<ActivityProps, ActivityState> {
-    constructor(props: ActivityProps) {
+export class Activity<P, S> extends Component<P, S> implements IActivity {
+    constructor(props: P) {
         super(props);
-        this.state = {
-            userKey: this.props.userKey,
-            sessionKey: this.props.sessionKey,
-        };
+        this.name = "Activity";
     }
 
+    name: string;
+
     render() {
-        return "run session with key: " + this.state.sessionKey;
+        return(
+        <div className={"OODCoreFrameworkActivity"}>
+            {this.props.children}
+        </div>);
     }
 }

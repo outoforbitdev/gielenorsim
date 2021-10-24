@@ -1,0 +1,33 @@
+﻿body {
+}
+
+table.OODCoreComponentsTabStrip{
+    width: 100%;
+    border-top: solid black 1px;
+    border-right: solid black 1px;
+    border-left: solid black 1px;
+    border-collapse: collapse;
+}
+
+td.OODCoreComponentsTabStrip {
+    width: auto;
+    border: solid black 1px;
+    padding: 2px 5px 0px 5px;
+    cursor: default;
+    user-select: none;
+    white-space: nowrap;
+}
+
+td.OODCoreComponentsTabStrip.selected {
+    border-top: solid black 1px;
+    border-right: solid black 1px;
+    border-bottom: none;
+}
+
+td.OODCoreComponentsTabStrip:hover {
+    background-color: gray;
+}
+
+    td.OODCoreComponentsTabStrip.spacer {
+        width: 100%;
+    }

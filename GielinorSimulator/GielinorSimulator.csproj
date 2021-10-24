@@ -22,13 +22,14 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Remove="ClientApp\src\App.test.js" />
     <None Remove="ClientApp\src\components\Counter.js" />
-    <None Remove="ClientApp\src\Components\EncyclopediaPage.tsx" />
     <None Remove="ClientApp\src\Components\EncyclopediaPage %28copy%29.tsx" />
     <None Remove="ClientApp\src\Styles\EncyclopediaPage.css" />
     <None Remove="ClientApp\src\core\" />
     <None Remove="ClientApp\src\core\Components\" />
     <None Remove="ClientApp\src\core\Framework\" />
-    <None Remove="ClientApp\src\core\Components.tsx" />
+    <None Remove="ClientApp\src\core\Styles\" />
+    <None Remove="ClientApp\src\core\Library\" />
+    <None Remove="ClientApp\src\Components\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,13 +41,11 @@
     <Folder Include="ClientApp\src\core\" />
     <Folder Include="ClientApp\src\core\Components\" />
     <Folder Include="ClientApp\src\core\Framework\" />
+    <Folder Include="ClientApp\src\core\Styles\" />
+    <Folder Include="ClientApp\src\core\Library\" />
+    <Folder Include="ClientApp\src\Components\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\Components\EncyclopediaPage.tsx" />
-    <TypeScriptCompile Include="ClientApp\src\Components\ArticleContent.tsx" />
-    <TypeScriptCompile Include="ClientApp\src\Components\Encyclopedia.tsx" />
-  </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

@@ -1,0 +1,45 @@
+﻿body {
+}
+
+div.OODCoreComponentsSearchBar.autocomplete {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+}
+
+.OODCoreComponentsSearchBar.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.OODCoreComponentsSearchBar.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+    .OODCoreComponentsSearchBar.autocomplete-items div:hover {
+        background-color: #e9e9e9;
+    }
+
+div.OODCoreComponentsSearchBar.autocomplete-active {
+    background-color: dodgerblue;
+    color: #ffffff;
+}
+
+input.OODCoreComponentsSearchBar {
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 16px;
+}
+
+input[type=text].OODCoreComponentsSearchBar {
+    width: 100%;
+}

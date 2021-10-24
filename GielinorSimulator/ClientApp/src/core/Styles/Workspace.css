@@ -1,0 +1,15 @@
+﻿body {
+}
+
+div.OODCoreFrameworkWorkspace {
+    display: flex;
+    flex-direction: column;
+/*    border: solid black 1px;*/
+    height: 99.4%;
+    position: absolute;
+    top: 0.3%;
+    left: 0.15%;
+    width: 99.7%;
+    overflow: hidden;
+    margin: 0;
+}
