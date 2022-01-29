@@ -1,20 +1,25 @@
 import { Activity } from '../core/Framework';
 import { InfoBox, Article, SearchBar } from '../core/Components';
+import { Race } from '../Model/Race';
+import { RaceInfoBox } from './RaceInfoBoxGenerator';
 
 interface EncyclopediaProps {
 }
 
 interface EncyclopediaState extends EncyclopediaProps {
-
+    editMode: boolean;
 }
 
 export class Encyclopedia extends Activity<EncyclopediaProps, EncyclopediaState> {
     constructor(props: EncyclopediaProps) {
         super(props);
         this.name = "Encyclopedia";
+        this.state = { editMode: false, };
     }
 
     render() {
+        console.log(this.state);
+
         const exampleSections = [
             {
                 header: "Header One",
@@ -48,14 +53,13 @@ export class Encyclopedia extends Activity<EncyclopediaProps, EncyclopediaState>
             ],
         }
 
+        const race = new Race("Elf");
+
         return (
             <Activity>
                 <div><SearchBar /></div>
                 <div>
-                <InfoBox title={"Example InfoBox"}
-                    editMode={true}
-                    sections={exampleSections}
-                />
+                    <RaceInfoBox value={race} />
                     <Article article={article} editable={false} />
                 </div>
             </Activity>

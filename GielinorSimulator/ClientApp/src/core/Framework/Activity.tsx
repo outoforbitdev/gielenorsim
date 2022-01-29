@@ -11,7 +11,7 @@ export class Activity<P, S> extends Component<P, S> implements IActivity {
         this.name = "Activity";
     }
 
-    name: string;
+    public name: string;
 
     render() {
         return(

@@ -39,7 +39,7 @@ export default class App extends Component<{}, AppState> {
             default:
                 return <Workspace userKey={this.state.userKey}
                     sessionKey={this.state.sessionKey}
-                    name={"Fantasy Simulator"}
+                    name={"Simulator"}
                     startupActivities={[encyclopediaActivity, startUpActivity]} />;
         }
     }

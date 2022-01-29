@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import {Input} from './Input';
+import React from 'react';
+import { IComponentProps, TextField } from '../Components';
 import '../Styles/InfoBox.css';
 
 enum InfoBoxLineType {
     String,
 }
 
-interface IInfoBoxLineProps {
+interface IInfoBoxLineProps extends IComponentProps {
     label: string;
     value: any;
     editMode: boolean;
@@ -14,33 +14,26 @@ interface IInfoBoxLineProps {
     even: boolean;
 }
 
-interface IInfoBoxLineState extends IInfoBoxLineProps {
-}
-
-export class InfoBoxLine extends Component<IInfoBoxLineProps, IInfoBoxLineState> {
-    constructor(props: IInfoBoxLineProps) {
-        super(props);
-
-        this.state = {
-            label: this.props.label,
-            value: this.props.value,
-            editMode: this.props.editMode,
-            even: this.props.even,
-        };
+export function InfoBoxLine(props: IInfoBoxLineProps) {
+    let inputField;
+    switch (props.lineType) {
+        case InfoBoxLineType.String:
+        default:
+            <TextField
+                defaultValue={props.value}
+            />
     }
 
-    render() {
-        return (
-            <tr className={"OODCoreComponentsInfoBox" + this.state.even ? "even": "odd"}>
-                <td className="OODCoreComponentsInfoBox label">{this.state.label}</td>
-                <td className="OODCoreComponentsInfoBox value">
-                    {
-                        this.state.editMode ?
-                            <Input value={this.state.value} onValueChange={(val) => {}} /> :
-                            this.state.value
-                    }
-                    </td>
-            </tr>
-        );
-    }
+    return (
+        <tr className={"OODCoreComponentsInfoBox" + props.even ? "even": "odd"}>
+            <td className="OODCoreComponentsInfoBox label">{props.label}</td>
+            <td className="OODCoreComponentsInfoBox value">
+                {
+                    props.editMode ?
+                        inputField :
+                        props.value
+                }
+                </td>
+        </tr>
+    );
 }

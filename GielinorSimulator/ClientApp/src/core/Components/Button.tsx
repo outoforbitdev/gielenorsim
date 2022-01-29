@@ -1,33 +1,21 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import { UniqueKey } from './Component';
+import { IComponentProps } from './IComponentProps';
 
-interface ButtonProps {
+interface IButtonProps extends IComponentProps {
     text?: string;
     onClick?: () => void;
 }
 
-interface ButtonState {
-    text: string;
-}
+export function Button(props: IButtonProps) {
+    const uniqueKey = UniqueKey("OODCoreComponentsButton");
 
-export class Button extends Component<ButtonProps, ButtonState> {
-    constructor(props: ButtonProps) {
-        super(props);
-
-        this.state = {
-            text: this.props.text ?? "",
-        };
-    }
-
-    render() {
-        return <button
-            onClick={this.__onClick.bind(this)}
-        >{this.state.text}</button>
-    }
-
-    private __onClick(): void {
-        if (this.props.onClick) {
-            this.props.onClick();
-        }
-        return undefined;
-    }
+    return (
+        <button
+            onClick={props.onClick}
+            className={props.className}
+        >
+            {props.text}
+        </button>
+    );
 }

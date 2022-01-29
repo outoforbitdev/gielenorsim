@@ -30,6 +30,7 @@
     <None Remove="ClientApp\src\core\Styles\" />
     <None Remove="ClientApp\src\core\Library\" />
     <None Remove="ClientApp\src\Components\" />
+    <None Remove="ClientApp\src\Model\Race.tsx" />
   </ItemGroup>
 
   <ItemGroup>
